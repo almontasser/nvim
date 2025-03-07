@@ -884,6 +884,7 @@ require('lazy').setup({
     end,
   },
 
+  --[[
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -905,7 +906,24 @@ require('lazy').setup({
       vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
+]]
 
+  {
+    'rebelot/kanagawa.nvim',
+    priority = 1000,
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('kanagawa').setup {
+        compile = true,
+        commentStyle = { italic = false },
+        theme = 'wave',
+      }
+      vim.cmd.colorscheme 'kanagawa'
+    end,
+    build = function()
+      vim.cmd 'KanagawaCompile'
+    end,
+  },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
